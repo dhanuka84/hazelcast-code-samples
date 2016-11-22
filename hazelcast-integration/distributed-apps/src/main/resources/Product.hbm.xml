@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.hazelcast.hibernate.distributed.entity.Product" table="PRODUCT">
+        <meta attribute="class-description">
+       
+        </meta>
+        <id name="id" type="long" column="ID">
+			<generator class="native"/>
+		</id>
+        <version name="version" column="VERSION" type="long" />
+        <property name="productId" column="PRODUCT_ID" type="string" not-null="true" unique="true"/>
+       
+        
+        <set name="tests" table="TEST"
+				inverse="true" lazy="false" fetch="join">
+            <key>
+                <column name="PRODUCT_ID" not-null="true" />
+            </key>
+            <one-to-many class="com.hazelcast.hibernate.distributed.entity.Test" />
+        </set>
+
+    </class>
+</hibernate-mapping>
