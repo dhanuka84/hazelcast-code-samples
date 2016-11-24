@@ -8,9 +8,13 @@
         <meta attribute="class-description">
             This class contains the employee detail.
         </meta>
+        <cache usage="read-write" region="Hazelcast" include="all"/>
         <id name="id" type="int" column="id"/>
         <property name="firstName" column="first_name" type="string"/>
         <property name="lastName" column="last_name" type="string"/>
         <property name="salary" column="salary" type="int"/>
+         
+       
     </class>
+    
 </hibernate-mapping>

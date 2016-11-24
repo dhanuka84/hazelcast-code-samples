@@ -1,14 +1,15 @@
 package com.hazelcast.hibernate;
 
+import static com.hazelcast.examples.helper.CommonUtils.sleepMillis;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-
-import java.util.List;
-import java.util.Scanner;
-
-import static com.hazelcast.examples.helper.CommonUtils.sleepMillis;
 
 public class ManageEmployee {
 
@@ -44,6 +45,12 @@ public class ManageEmployee {
                     System.out.print(", last name: " + employee.getLastName());
                     System.out.println(", salary: " + employee.getSalary());
                 }
+            } else if (command.equals("clear")) {
+            	currentSession.clear();
+            } else if (command.equals("load")) {
+            	System.out.println(currentSession.get(Employee.class, 1));
+            	Map cacheEntries = factory.getStatistics().getSecondLevelCacheStatistics("Hazelcast").getEntries();
+            	System.out.println(cacheEntries);
             } else if (command.equals("add")) {
                 System.out.print("Id: ");
                 int id = reader.nextInt();

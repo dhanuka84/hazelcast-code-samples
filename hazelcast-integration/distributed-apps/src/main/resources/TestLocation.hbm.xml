@@ -6,7 +6,7 @@
 
 
 <class name="com.hazelcast.hibernate.distributed.entity.TestLocation" table="TEST_LOCATION" mutable="false">
-
+	 <cache usage="read-write" region="Hazelcast" include="all"/>
     <!-- A composite primary key, assigned by the application -->
     <composite-id name="id" class="com.hazelcast.hibernate.distributed.entity.TestLocation$Id">
         <key-property name="testId" column="TEST_ID"/>
@@ -53,7 +53,7 @@
                     column="TEST_ID"
                     not-null="true"
                     insert="false"
-                    update="false" fetch="join" 
+                    update="false" fetch="select" 
                     foreign-key="FK_TEST_LOCATION_TEST_ID"/>
 
     <!-- Read-only association property -->
@@ -61,7 +61,7 @@
                     column="LOCATION_ID"
                     not-null="true"
                     insert="false"
-                    update="false" fetch="join" 
+                    update="false" fetch="select" 
                     foreign-key="FK_TEST_LOCATION_LOCATION_ID"/>
 </class>
 

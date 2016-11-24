@@ -8,6 +8,7 @@
         <meta attribute="class-description">
        
         </meta>
+        <cache usage="read-write" region="Hazelcast" include="all"/>
         <id name="id" type="long" column="ID">
 			<generator class="native"/>
 		</id>
@@ -18,13 +19,15 @@
         <set name="testlocations"
 	            cascade="all, delete-orphan"
 	            inverse="true"
-	            fetch="join">
+	            fetch="select">
+	        <cache usage="read-write" region="Hazelcast" include="all"/>
 	        <key column="TEST_ID" not-null="true"/>
 	        <one-to-many class="com.hazelcast.hibernate.distributed.entity.TestLocation"/>
 	    </set>
 	    
 	    <set name="locations" table="TEST_LOCATION"
-        	inverse="true" lazy="false" fetch="join" cascade="all" >
+        	inverse="true" lazy="false" fetch="select" cascade="all" >
+        	<cache usage="read-write" region="Hazelcast" include="all"/>
             <key>
                 <column name="TEST_ID" not-null="true" />
             </key>

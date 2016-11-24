@@ -8,6 +8,7 @@
         <meta attribute="class-description">
        
         </meta>
+        <cache usage="read-write" region="Hazelcast" include="all"/>
         <id name="id" type="long" column="ID">
 			<generator class="native"/>
 		</id>
@@ -16,7 +17,8 @@
        
         
         <set name="tests" table="TEST"
-				inverse="true" lazy="false" fetch="join">
+				inverse="true" lazy="false" fetch="select">
+			<cache usage="read-write" region="Hazelcast" include="all"/>
             <key>
                 <column name="PRODUCT_ID" not-null="true" />
             </key>

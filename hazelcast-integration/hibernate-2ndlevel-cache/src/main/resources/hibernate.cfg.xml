@@ -11,6 +11,11 @@
         <property name="hibernate.cache.hazelcast.native_client_password">password</property>
         <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.EmbeddedDriver</property>
         <property name="hibernate.connection.url">jdbc:derby:hibernateDB</property>
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+        <property name="hibernate.generate_statistics">true</property>
+        <property name="hibernate.cache.use_structured_entries">true</property>
         <mapping resource="Employee.hbm.xml"/>
+        
     </session-factory>
 </hibernate-configuration>

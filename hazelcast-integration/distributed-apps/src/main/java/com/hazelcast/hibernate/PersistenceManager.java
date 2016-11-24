@@ -45,7 +45,7 @@ public class PersistenceManager {
 	
 	public static void load(Session currentSession){
 		 for(Entry<String, Long> product : productMap.entrySet()){
-         	Product entry = (Product) currentSession.load(Product.class, product.getValue());
+         	Product entry = (Product) currentSession.get(Product.class, product.getValue());
          	System.out.print("Id: " + entry.getId());
              System.out.print(", productId " + entry.getProductId());
              System.out.print(", tests " + entry.getTests());
@@ -89,6 +89,8 @@ public class PersistenceManager {
                 
                
             } else if (command.equals("add")) {
+            }else if (command.equals("clear")) {
+            	currentSession.clear();
             } else if (command.equals("load")) {
             	load(currentSession);
             } else if (command.equals("delete")) {
